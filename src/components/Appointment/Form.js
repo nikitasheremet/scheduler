@@ -4,14 +4,11 @@ import InterviewerList from "../InterviewerList"
 import Button from "../Button"
 
 export default function Form(props) {
+    // console.log(props)
     const [currentName, setName] = useState(props.name || "")
     const [selectedInterviewer, setInterviewer] = useState(props.interviewer || null)
+    // console.log(currentName, selectedInterviewer)
 
-    // const reset = () => {
-    //     setName("")
-    //     setInterviewer(null)
-    //     props.onCancel()
-    // }
     return (
         <main className="appointment__card appointment__card--create">
             <section className="appointment__card-left">
@@ -26,13 +23,10 @@ export default function Form(props) {
                         placeholder="Enter Student Name"
                         onChange={event => setName(event.target.value)}
                         value={currentName}
-
-                    /*
-                    This must be a controlled component
-                    */
                     />
                 </form>
                 <InterviewerList
+                    key={props.id}
                     interviewers={props.interviewers}
                     value={selectedInterviewer}
                     onChange={setInterviewer}
@@ -41,7 +35,7 @@ export default function Form(props) {
             <section className="appointment__card-right">
                 <section className="appointment__actions">
                     <Button danger onClick={props.onCancel}>Cancel</Button>
-                    <Button confirm onClick={props.onSave}>Save</Button>
+                    <Button confirm onClick={() => props.onSave(currentName, selectedInterviewer)}>Save</Button>
                 </section>
             </section>
         </main>
