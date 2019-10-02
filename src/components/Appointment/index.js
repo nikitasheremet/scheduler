@@ -41,7 +41,7 @@ export default function Appointment(props) {
         })
     }
     // console.log(save)
-    // console.log(props)
+    console.log(props)
 
     return (
         <article className="appointment">
@@ -64,11 +64,14 @@ export default function Appointment(props) {
                     interviewer={props.interview.interviewer.name}
                     interviewerID={props.interview.interviewer.id}
                     onDelete={() => transition(CONFIRM)}
+                    onEdit={() => transition(CREATE)}
                 />
             )}
             {mode === CREATE && (
                 <Form
                     id={props.id}
+                    name={props.interview ? props.interview.student : null}
+                    interviewer={props.interview ? props.interview.interviewer.id : null}
                     interviewers={props.interviewers}
                     onCancel={() => back()}
                     onSave={save}
