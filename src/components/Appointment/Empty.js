@@ -1,15 +1,17 @@
 import React from "react"
 import "./style.scss"
 
+
 export default function Empty(props) {
+    // console.log("IN EMPTY", props)
     return (
         <main className="appointment__add">
-        <img
-            className="appointment__add-button"
-            src="images/add.png"
-            alt="Add"
-            onClick={props.onAdd}
-             />
+            <img
+                className="appointment__add-button"
+                src="images/add.png"
+                alt="Add"
+                onClick={props.onAdd}
+            />
         </main>
     )
 }
