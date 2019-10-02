@@ -17,3 +17,14 @@ export function getInterview(state, interview) {
         })[0]
     }
 }
+
+export function getInterviewersForDay(state, day) {
+    let appList = state.days.filter(item => item.name === day)
+    if (appList.length === 0) {
+        return [];
+    } else {
+        appList = appList[0].interviewers
+    }
+    let appResult = Object.values(state.interviewers).filter(app => appList.includes(app.id))
+    return appResult
+}
