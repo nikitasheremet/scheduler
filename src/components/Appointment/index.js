@@ -12,6 +12,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING"
+const DELETING = "DELETING"
 
 
 
@@ -30,6 +31,13 @@ export default function Appointment(props) {
             transition(SHOW)
         })
     }
+
+    function infoToDelete() {
+        transition(DELETING)
+        props.deleteInterview(props.id).then(() => {
+            transition(EMPTY)
+        })
+    }
     // console.log(save)
     // console.log(props)
 
@@ -39,11 +47,14 @@ export default function Appointment(props) {
                 time={props.time}
             />
             {mode === SAVING && <Status message={"Saving"} />}
+            {mode === DELETING && <Status message={"Deleting"} />}
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
             {mode === SHOW && (
                 <Show
                     student={props.interview.student}
                     interviewer={props.interview.interviewer.name}
+                    interviewerID={props.interview.interviewer.id}
+                    onDelete={infoToDelete}
                 />
             )}
             {mode === CREATE && (
