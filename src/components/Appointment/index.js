@@ -5,7 +5,7 @@ import Show from "./Show"
 import Empty from "./Empty"
 import Form from "./Form"
 import useVisualMode from "../../hooks/useVisualMode"
-import { tsPropertySignature } from "@babel/types"
+// import { getInterviewersByDay } from "../helpers/selectors"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -32,7 +32,7 @@ export default function Appointment(props) {
             )}
             {mode === CREATE && (
                 <Form
-                    interviewers={[]}
+                    interviewers={props.interviewers}
                     onCancel={() => back()}
                 />
             )}
