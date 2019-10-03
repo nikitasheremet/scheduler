@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from "react"
 import axios from "axios"
+// import WebSocket from "ws"
 
 const SET_DAY = "SET_DAY";
 const SET_DAYS = "SET_DAYS";
@@ -31,6 +32,9 @@ export default function () {
         appointments: {},
         interviewers: {}
     })
+    // useEffect(() => {
+    //     // const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
+    // }, [])
 
     useEffect(() => {
         Promise.all([
