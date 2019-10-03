@@ -1,40 +1,34 @@
 import { useReducer, useEffect } from "react"
 import axios from "axios"
 
-export default function () {
-    const SET_DAY = "SET_DAY";
-    const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-    const SET_INTERVIEW = "SET_INTERVIEW";
+const SET_DAY = "SET_DAY";
+const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+const SET_INTERVIEW = "SET_INTERVIEW";
 
-    function reducer(state, action) {
-        switch (action.type) {
-            case SET_DAY:
-                return { ...state, day: action.day }
-            case SET_APPLICATION_DATA:
-                return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
-            case SET_INTERVIEW:
-                return { ...state, appointments: action.appointments }
-            default:
-                throw new Error(
-                    `Tried to reduce with unsupported action type: ${action.type}`
-                );
-        }
+function reducer(state, action) {
+    switch (action.type) {
+        case SET_DAY:
+            return { ...state, day: action.day }
+        case SET_APPLICATION_DATA:
+            return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
+        case SET_INTERVIEW:
+            return { ...state, appointments: action.appointments }
+        default:
+            throw new Error(
+                `Tried to reduce with unsupported action type: ${action.type}`
+            );
     }
-    const [state, dispatch] = useReducer({
+}
+
+export default function () {
+
+    const [state, dispatch] = useReducer(reducer, {
         day: "Monday",
         days: [],
         appointments: {},
         interviewers: {}
     })
-    // const [state, setState] = useState({
-    //     day: "Monday",
-    //     days: [],
-    //     appointments: {},
-    //     interviewers: {}
-    // });
-    function setDay(day) {
-        dispatch({ type: SET_DAY, day })
-    }
+    // console.log(state)
 
     useEffect(() => {
         Promise.all([
@@ -46,9 +40,13 @@ export default function () {
             // console.log(days.data)
             // console.log(appointments.data)
             // console.log(interviewers.data)
-            dispatch({ type: SET_APPLICATION_DATA, days: days.data, appointments: appointments.data, interviews: interviewers.data }) //prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }))
+            dispatch({ type: SET_APPLICATION_DATA, days: days.data, appointments: appointments.data, interviewers: interviewers.data }) //prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }))
         })
     }, [])
+
+    function setDay(day) {
+        dispatch({ type: SET_DAY, day })
+    }
 
     function bookInterview(id, interview) {
         const appointment = {

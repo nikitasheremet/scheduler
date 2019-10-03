@@ -35,7 +35,7 @@ export default function Form(props) {
             <section className="appointment__card-right">
                 <section className="appointment__actions">
                     <Button danger onClick={props.onCancel}>Cancel</Button>
-                    <Button confirm onClick={() => props.onSave(currentName, selectedInterviewer)}>Save</Button>
+                    <Button confirm onClick={() => props.onSave(currentName, selectedInterviewer || props.interviewers[0].id)}>Save</Button>
                 </section>
             </section>
         </main>

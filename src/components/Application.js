@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DayList from "./DayList"
 import Appointment from "./Appointment/index"
 // import axios from "axios"
@@ -14,7 +14,6 @@ export default function Application(props) {
     bookInterview,
     deleteInterview
   } = useApplicationData();
-
 
   const appointmentsForDay = getAppointmentsForDay(state, state.day)
   const interviewersForDay = getInterviewersForDay(state, state.day)
