@@ -26,6 +26,8 @@ npm run storybook
 ```
 ## Preview of Interview Scheduler
 
+![GIF of functionality]()
+
 ## Functionality
 
 * Interviews can be booked between Monday and Friday.

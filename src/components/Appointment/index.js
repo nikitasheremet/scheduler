@@ -50,7 +50,7 @@ export default function Appointment(props) {
             })
     }
     // console.log(save)
-    // console.log(props)
+    console.log(props)
 
     return (
         <article className="appointment">
