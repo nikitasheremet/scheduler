@@ -2,6 +2,7 @@ import { useReducer, useEffect } from "react"
 import axios from "axios"
 
 const SET_DAY = "SET_DAY";
+const SET_DAYS = "SET_DAYS";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
 
@@ -11,6 +12,8 @@ function reducer(state, action) {
             return { ...state, day: action.day }
         case SET_APPLICATION_DATA:
             return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
+        case SET_DAYS:
+            return { ...state, days: action.days }
         case SET_INTERVIEW:
             return { ...state, appointments: action.appointments }
         default:
@@ -28,7 +31,6 @@ export default function () {
         appointments: {},
         interviewers: {}
     })
-    // console.log(state)
 
     useEffect(() => {
         Promise.all([
@@ -43,7 +45,7 @@ export default function () {
             dispatch({ type: SET_APPLICATION_DATA, days: days.data, appointments: appointments.data, interviewers: interviewers.data }) //prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }))
         })
     }, [])
-
+    console.log(state)
     function setDay(day) {
         dispatch({ type: SET_DAY, day })
     }
@@ -62,6 +64,10 @@ export default function () {
             interview
         }).then(() => {
             dispatch({ type: SET_INTERVIEW, appointments })
+        }).then(() => {
+            axios.get("http://localhost:8001/api/days").then((res) => {
+                dispatch({ type: SET_DAYS, days: res.data })
+            })
         })
 
     }
@@ -78,6 +84,10 @@ export default function () {
         return axios.delete(`http://localhost:8001/api/appointments/${id}`)
             .then(() => {
                 dispatch({ type: SET_INTERVIEW, appointments })
+            }).then(() => {
+                axios.get("http://localhost:8001/api/days").then((res) => {
+                    dispatch({ type: SET_DAYS, days: res.data })
+                })
             })
     }
 
