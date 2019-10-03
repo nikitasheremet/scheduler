@@ -33,12 +33,12 @@ export default function Appointment(props) {
             transition(SHOW)
         })
             .catch(() => {
-                transition(ERRORsave)
+                transition(ERRORsave, true)
             })
     }
 
     function infoForDelete() {
-        transition(DELETING)
+        transition(DELETING, true)
         props.deleteInterview(props.id).then(() => {
             transition(EMPTY)
         })

@@ -42,6 +42,7 @@ export default function () {
             dispatch({ type: SET_APPLICATION_DATA, days: days.data, appointments: appointments.data, interviewers: interviewers.data }) //prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }))
         })
     }, [])
+
     function setDay(day) {
         dispatch({ type: SET_DAY, day })
     }
