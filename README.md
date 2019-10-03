@@ -26,7 +26,7 @@ npm run storybook
 ```
 ## Preview of Interview Scheduler
 
-![GIF of functionality]()
+![GIF of functionality](https://github.com/nikitasheremet/scheduler/blob/master/media/scheduler_preview.gif)
 
 ## Functionality
 
