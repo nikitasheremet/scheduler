@@ -8,7 +8,6 @@ import Status from "./Status"
 import Confirm from "./Confirm"
 import Error from "./Error"
 import useVisualMode from "../../hooks/useVisualMode"
-// import { getInterviewersByDay } from "../helpers/selectors"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -18,8 +17,6 @@ const DELETING = "DELETING"
 const CONFIRM = "CONFIRM"
 const ERRORsave = "ERRORsave"
 const ERRORdelete = "ERRORdelete"
-
-
 
 export default function Appointment(props) {
     const { mode, transition, back } = useVisualMode(
@@ -40,7 +37,7 @@ export default function Appointment(props) {
             })
     }
 
-    function infoToDelete() {
+    function infoForDelete() {
         transition(DELETING)
         props.deleteInterview(props.id).then(() => {
             transition(EMPTY)
@@ -49,8 +46,6 @@ export default function Appointment(props) {
                 transition(ERRORdelete, true)
             })
     }
-    // console.log(save)
-    console.log(props)
 
     return (
         <article className="appointment">
@@ -75,7 +70,7 @@ export default function Appointment(props) {
                 <Confirm
                     message={"Are you sure you would like to delete?"}
                     onCancel={() => back()}
-                    onConfirm={infoToDelete}
+                    onConfirm={infoForDelete}
                 />
             )}
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}

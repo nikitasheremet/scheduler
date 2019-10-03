@@ -1,10 +1,8 @@
 import React from "react";
 import DayList from "./DayList"
 import Appointment from "./Appointment/index"
-// import axios from "axios"
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "./helpers/selectors"
 import useApplicationData from "hooks/useApplicationData"
-
 import "components/Application.scss";
 
 export default function Application(props) {
@@ -15,6 +13,8 @@ export default function Application(props) {
     deleteInterview
   } = useApplicationData();
 
+  //Get an array of appointments and interviewers based on the day selected
+  //Map through appointments for curent day and render them using the Appointment component
   const appointmentsForDay = getAppointmentsForDay(state, state.day)
   const interviewersForDay = getInterviewersForDay(state, state.day)
   const schedule = appointmentsForDay.map(app => {
