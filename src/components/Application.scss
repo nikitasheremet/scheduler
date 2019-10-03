@@ -10,7 +10,7 @@
 
   &--centered {
     align-self: center;
-    width:85%;
+    // width:85%;
   }
 
   &__separator {
@@ -26,6 +26,9 @@
 
   &__lhl {
     margin-top: 2rem;
+  }
+  .pic {
+    width:85%;
   }
 }
 
