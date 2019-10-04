@@ -9,8 +9,7 @@ export default function Application(props) {
   const {
     state,
     setDay,
-    bookInterview,
-    deleteInterview
+    updateInterviewInfo
   } = useApplicationData();
 
   //Get an array of appointments and interviewers based on the day selected
@@ -26,8 +25,8 @@ export default function Application(props) {
         time={app.time}
         interview={interview}
         interviewers={interviewersForDay}
-        bookInterview={bookInterview}
-        deleteInterview={deleteInterview}
+        bookInterview={updateInterviewInfo}
+        deleteInterview={updateInterviewInfo}
       />
     )
   })

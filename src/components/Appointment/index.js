@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./style.scss"
 import Header from "./Header"
 import Show from "./Show"
@@ -29,10 +29,12 @@ export default function Appointment(props) {
             interviewer
         };
         transition(SAVING)
+        console.log("PROPS IN SAVE", props)
         props.bookInterview(props.id, interview).then(() => {
             transition(SHOW)
         })
-            .catch(() => {
+            .catch((e) => {
+                console.log(e)
                 transition(ERRORsave, true)
             })
     }
@@ -46,6 +48,15 @@ export default function Appointment(props) {
                 transition(ERRORdelete, true)
             })
     }
+
+    useEffect(() => {
+        if (props.interview && mode === EMPTY) {
+            transition(SHOW);
+        }
+        if (props.interview === null && mode === SHOW) {
+            transition(EMPTY);
+        }
+    }, [transition, mode, props.interview]);
 
     return (
         <article className="appointment">
@@ -74,7 +85,7 @@ export default function Appointment(props) {
                 />
             )}
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-            {mode === SHOW && (
+            {mode === SHOW && props.interview && (
                 <Show
                     student={props.interview.student}
                     interviewer={props.interview.interviewer.name}
