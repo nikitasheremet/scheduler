@@ -1,8 +1,6 @@
 import { useReducer, useEffect } from "react"
 import axios from "axios"
 
-
-
 const SET_DAY = "SET_DAY";
 const SET_DAYS = "SET_DAYS";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
@@ -27,7 +25,6 @@ function reducer(state, action) {
     }
 }
 
-
 export default function () {
     const [state, dispatch] = useReducer(reducer, {
         day: "Monday",
@@ -43,31 +40,30 @@ export default function () {
             axios.get("http://localhost:8001/api/interviewers")
         ]).then(res => {
             const [days, appointments, interviewers] = res
+            // console.log(days)
             dispatch({ type: SET_APPLICATION_DATA, days: days.data, appointments: appointments.data, interviewers: interviewers.data }) //prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }))
         })
     }, [])
 
-    function updateRemainingSpots(appointments) {
+    function updateRemainingSpots(appointments, id) {
         let counter = 0
-        let appList = state.days.filter(item => item.name === state.day)
+        let whichDay = state.days.filter(item => item.appointments.includes(id))[0].name
+        let appList = state.days.filter(item => item.name === whichDay)
         if (appList.length === 0) {
-            return [];
+            return []
         } else {
             appList = appList[0].appointments
         }
-        let filteredApp = Object.values(appointments).filter(app => appList.includes(app.id))
-        for (let app of filteredApp) {
-            // console.log(app)
+        Object.values(appointments).filter(app => appList.includes(app.id)).forEach(app => {
             if (!app.interview) counter++
-        }
-        const dayTarget = { ...state.days.find(d => d.name === state.day), spots: counter }
+        })
+        const thisDay = { ...state.days.find(d => d.name === state.day), spots: counter }
         const days = [
             ...state.days
         ].map(a => {
-            if (a.name === dayTarget.name) return dayTarget
+            if (a.name === thisDay.name) return thisDay
             return a
         })
-
         dispatch({ type: SET_DAYS, days })
     }
 
@@ -92,13 +88,13 @@ export default function () {
         }
         return axiosCall.then((res) => {
             dispatch({ type: SET_INTERVIEW, appointments })
-            updateRemainingSpots(appointments)
+            updateRemainingSpots(appointments, id)
         })
     }
 
     useEffect(() => {
         const ws = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
-        ws.onopen = function (event) {
+        ws.onopen = function () {
 
             ws.onmessage = function (event) {
                 const data = JSON.parse(event.data);
@@ -111,9 +107,8 @@ export default function () {
                         ...state.appointments,
                         [data.id]: appointment
                     };
-
                     dispatch({ type: SET_INTERVIEW, appointments })
-                    updateRemainingSpots(appointments)
+                    updateRemainingSpots(appointments, data.id)
 
                 }
             }

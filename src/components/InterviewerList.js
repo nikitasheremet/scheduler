@@ -1,7 +1,11 @@
 import React from "react"
 import "./InterviewerList.scss"
 import InterviewerListItem from "./InterviewerListItem"
-// import { tsImportEqualsDeclaration } from "@babel/types";
+import PropTypes from 'prop-types';
+
+InterviewerListItem.propTypes = {
+    onChange: PropTypes.func.isRequired
+};
 
 export default function InterviewerItemList(props) {
     return (
