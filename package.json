@@ -55,5 +55,9 @@
       "src/**/*.js",
       "!src/index.js"
     ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false
   }
 }

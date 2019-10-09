@@ -1,23 +1,23 @@
-import React from "react";
+import React from "react"
 import DayList from "./DayList"
 import Appointment from "./Appointment/index"
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "./helpers/selectors"
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay
+} from "./helpers/selectors"
 import useApplicationData from "hooks/useApplicationData"
-import "components/Application.scss";
+import "components/Application.scss"
 
 export default function Application(props) {
-  const {
-    state,
-    setDay,
-    updateInterviewInfo
-  } = useApplicationData();
+  const { state, setDay, updateInterviewInfo } = useApplicationData()
 
   //Get an array of appointments and interviewers based on the day selected
   //Map through appointments for curent day and render them using the Appointment component
   const appointmentsForDay = getAppointmentsForDay(state, state.day)
   const interviewersForDay = getInterviewersForDay(state, state.day)
   const schedule = appointmentsForDay.map(app => {
-    const interview = getInterview(state, app.interview);
+    const interview = getInterview(state, app.interview)
     return (
       <Appointment
         key={app.id}
@@ -57,5 +57,5 @@ export default function Application(props) {
         <Appointment key="last" time="5pm" />
       </section>
     </main>
-  );
+  )
 }
