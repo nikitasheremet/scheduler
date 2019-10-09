@@ -5,7 +5,8 @@ const SET_DAY = "SET_DAY"
 const SET_DAYS = "SET_DAYS"
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA"
 const SET_INTERVIEW = "SET_INTERVIEW"
-axios.defaults.baseURL = "https://interview-schedulerlhl.herokuapp.com/"
+
+console.log(axios.defaults)
 
 function reducer(state, action) {
   switch (action.type) {
@@ -104,7 +105,7 @@ export default function() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
+    const ws = new WebSocket("wss://interview-schedulerlhl.herokuapp.com/")
     ws.onopen = function() {
       ws.onmessage = function(event) {
         const data = JSON.parse(event.data)
