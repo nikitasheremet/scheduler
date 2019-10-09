@@ -28,29 +28,29 @@ describe("Application", () => {
 
     expect(getByText("Leopold Silvers")).toBeInTheDocument()
   })
-  // it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-  //   const { container, debug } = render(<Application />)
+  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+    const { container, debug } = render(<Application />)
 
-  //   await waitForElement(() => getByText(container, "Archie Cohen"))
+    await waitForElement(() => getByText(container, "Archie Cohen"))
 
-  //   const appointment = getAllByTestId(container, "appointment")[0]
+    const appointment = getAllByTestId(container, "appointment")[0]
 
-  //   fireEvent.click(getByAltText(appointment, "Add"))
+    fireEvent.click(getByAltText(appointment, "Add"))
 
-  //   const input = getByPlaceholderText(appointment, "Enter Student Name")
+    const input = getByPlaceholderText(appointment, "Enter Student Name")
 
-  //   fireEvent.change(input, { target: { value: "Nikita" } })
+    fireEvent.change(input, { target: { value: "Nikita" } })
 
-  //   fireEvent.click(getByAltText(appointment, "Sylvia Palmer"))
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"))
 
-  //   fireEvent.click(getByText(appointment, "Save"))
-  //   expect(getByText(appointment, "Saving")).toBeInTheDocument()
-  //   await waitForElement(() => queryByText(appointment, "Nikita"))
-  //   const day = getAllByTestId(container, "day").find(day =>
-  //     queryByText(day, "Monday")
-  //   )
-  //   expect(getByText(day, "no spots remaining")).toBeInTheDocument()
-  // })
+    fireEvent.click(getByText(appointment, "Save"))
+    expect(getByText(appointment, "Saving")).toBeInTheDocument()
+    await waitForElement(() => queryByText(appointment, "Nikita"))
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    )
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument()
+  })
   it("loads data, delete an interview and increases the spots remaining for Monday by 1", async () => {
     const { container, debug } = render(<Application />)
     await waitForElement(() => getByText(container, "Archie Cohen"))
