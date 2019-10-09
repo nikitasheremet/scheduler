@@ -60,5 +60,6 @@
   "prettier": {
     "tabWidth": 2,
     "semi": false
-  }
+  },
+  "proxy": "http://localhost:8001"
 }

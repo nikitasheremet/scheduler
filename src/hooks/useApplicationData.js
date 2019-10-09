@@ -43,6 +43,7 @@ export default function() {
       axios.get("/api/interviewers")
     ]).then(res => {
       const [days, appointments, interviewers] = res
+      console.log(days)
       dispatch({
         type: SET_APPLICATION_DATA,
         days: days.data,
@@ -90,12 +91,10 @@ export default function() {
     let axiosCall
     if (interview) {
       axiosCall = Promise.all([
-        axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+        axios.put(`/api/appointments/${id}`, { interview })
       ])
     } else {
-      axiosCall = Promise.all([
-        axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      ])
+      axiosCall = Promise.all([axios.delete(`/api/appointments/${id}`)])
     }
     return axiosCall.then(res => {
       dispatch({ type: SET_INTERVIEW, appointments })
