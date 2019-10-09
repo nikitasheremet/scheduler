@@ -32,8 +32,7 @@ const fixtures = {
   interviewers: {
     "1": {
       id: 1,
-      name: "Sylvia Palmer",
-      avatar: "https://i.imgur.com/LpaY82x.png"
+      name: "Syl/LpaY82x.png"
     },
     "2": {
       id: 2,
@@ -56,7 +55,7 @@ const fixtures = {
 export default {
   get: jest.fn(url => {
     console.log(url)
-    if (url === "https://interview-schedulerlhl.herokuapp.com/api/days") {
+    if (url === "/api/days") {
       return Promise.resolve({
         status: 200,
         statusText: "OK",
@@ -64,9 +63,7 @@ export default {
       })
     }
 
-    if (
-      url === "https://interview-schedulerlhl.herokuapp.com/api/appointments"
-    ) {
+    if (url === "/api/appointments") {
       /* Resolve appointments data */
       return Promise.resolve({
         status: 200,
@@ -75,9 +72,7 @@ export default {
       })
     }
 
-    if (
-      url === "https://interview-schedulerlhl.herokuapp.com/api/interviewers"
-    ) {
+    if (url === "/api/interviewers") {
       /* Resolve interviewers data */
       return Promise.resolve({
         status: 200,
@@ -87,9 +82,7 @@ export default {
     }
   }),
   put: jest.fn(url => {
-    if (
-      url === `https://interview-schedulerlhl.herokuapp.com/api/appointments/1`
-    ) {
+    if (url === `/api/appointments/1`) {
       return Promise.resolve({
         status: 204,
         statusText: "No Content"
@@ -97,9 +90,7 @@ export default {
     }
   }),
   delete: jest.fn(url => {
-    if (
-      url === `https://interview-schedulerlhl.herokuapp.com/api/appointments/2`
-    ) {
+    if (url === `/api/appointments/2`) {
       return Promise.resolve({
         status: 204,
         statusText: "No Content"
