@@ -5,6 +5,7 @@ const SET_DAY = "SET_DAY"
 const SET_DAYS = "SET_DAYS"
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA"
 const SET_INTERVIEW = "SET_INTERVIEW"
+axios.defaults.baseURL = "https://interview-schedulerlhl.herokuapp.com/"
 
 function reducer(state, action) {
   switch (action.type) {
