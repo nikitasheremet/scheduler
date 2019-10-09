@@ -41,9 +41,7 @@ describe("Application", () => {
 
     fireEvent.change(input, { target: { value: "Nikita" } })
 
-    fireEvent.click(
-      getByAltText(appointment, "https://i.imgur.com/LpaY82x.png")
-    )
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"))
 
     fireEvent.click(getByText(appointment, "Save"))
     expect(getByText(appointment, "Saving")).toBeInTheDocument()
@@ -105,9 +103,7 @@ describe("Application", () => {
 
     fireEvent.change(input, { target: { value: "Nikita" } })
 
-    fireEvent.click(
-      getByAltText(appointment, "https://i.imgur.com/LpaY82x.png")
-    )
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"))
 
     fireEvent.click(getByText(appointment, "Save"))
 
