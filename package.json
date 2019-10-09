@@ -61,5 +61,5 @@
     "tabWidth": 2,
     "semi": false
   },
-  "proxy": "http://localhost:8001"
+  "proxy": "https://interview-schedulerlhl.herokuapp.com/"
 }
