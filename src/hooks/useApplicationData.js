@@ -38,9 +38,9 @@ export default function() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("api/days"),
-      axios.get("api/appointments"),
-      axios.get("api/interviewers")
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers")
     ]).then(res => {
       const [days, appointments, interviewers] = res
       console.log(days)
