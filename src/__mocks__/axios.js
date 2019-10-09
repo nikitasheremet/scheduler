@@ -55,6 +55,7 @@ const fixtures = {
 
 export default {
   get: jest.fn(url => {
+    console.log(url)
     if (url === "https://interview-schedulerlhl.herokuapp.com/api/days") {
       return Promise.resolve({
         status: 200,
