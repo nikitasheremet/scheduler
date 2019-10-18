@@ -19,7 +19,7 @@ const ERRORsave = "ERRORsave"
 const ERRORdelete = "ERRORdelete"
 
 export default function Appointment(props) {
-  console.log("PROPS", props)
+  // console.log("PROPS", props)
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   )
@@ -60,7 +60,7 @@ export default function Appointment(props) {
       transition(EMPTY)
     }
   }, [transition, mode, props.interview])
-  console.log("PROPS", props)
+  // console.log("PROPS", props)
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />

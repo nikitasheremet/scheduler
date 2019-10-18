@@ -11,7 +11,7 @@ export default function Form(props) {
   const [error, setError] = useState("")
 
   function validate() {
-    if (currentName === "" || selectedInterviewer === "") {
+    if (currentName === "" || !selectedInterviewer) {
       setError("Student name OR Interviewer cannot be blank")
       return
     }

@@ -6,7 +6,7 @@ const SET_DAYS = "SET_DAYS"
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA"
 const SET_INTERVIEW = "SET_INTERVIEW"
 
-console.log(axios.defaults)
+// console.log(axios.defaults)
 
 function reducer(state, action) {
   switch (action.type) {
@@ -45,7 +45,7 @@ export default function() {
       axios.get("/api/interviewers")
     ]).then(res => {
       const [days, appointments, interviewers] = res
-      console.log(days)
+      // console.log(days)
       dispatch({
         type: SET_APPLICATION_DATA,
         days: days.data,
